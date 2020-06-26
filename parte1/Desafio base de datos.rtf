@@ -1,0 +1,221 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Bold;\f1\fnil\fcharset0 Menlo-Regular;\f2\froman\fcharset0 Times-Roman;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\csgray\c0;\cssrgb\c0\c0\c0;}
+\margl1440\margr1440\vieww13620\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\b\fs22 \cf2 \ul \ulc2 \CocoaLigature0 PARTE 1:
+\f1\b0 \ulnone \
+\
+\ul - Crear base de datos posts:\ulnone \
+\
+CREATE DATABASE posts;\
+\
+\\c posts\
+\
+\
+\ul - Crear tabla posts, \cf3 \expnd0\expndtw0\kerning0
+\ulc3 \CocoaLigature1 con los atributos id, nombre de usuario, fecha de creaci\'f3n, contenido, descripci\'f3n \cf2 \kerning1\expnd0\expndtw0 \ulc2 \CocoaLigature0 \
+\ulnone \
+CREATE TABLE posts (id SERIAL, username VARCHAR(20), created_at DATE, content VARCHAR, description VARCHAR(225), PRIMARY KEY (id));\
+\
+\
+\ul - \cf3 \expnd0\expndtw0\kerning0
+\ulc3 \CocoaLigature1 Insertar 3 post, 2 para el usuario "Pamela" y uno para "Carlos" \
+\
+\cf2 \kerning1\expnd0\expndtw0 \ulnone \CocoaLigature0 INSERT INTO posts (username, created_at, content, description) VALUES\
+('Pamela', '06-09-2020', 'Lorem ipsum 1', 'Lorem ipsum 2');\
+\
+INSERT INTO posts (username, created_at, content, description) VALUES\
+('Pamela', '06-09-2020', 'Lorem ipsum 1.2', 'Lorem ipsum 2.2');\
+\
+INSERT INTO posts (username, created_at, content, description) VALUES  \
+('Carlos', '06-09-2020', 'Lorem ipsum 1', 'Lorem ipsum 2');\
+\
+\
+SELECT * FROM posts;\
+ id | username | created_at |     content     |   description   \
+----+----------+------------+-----------------+-----------------\
+  1 | Pamela   | 2020-06-09 | Lorem ipsum 1   | Lorem ipsum 2\
+  2 | Pamela   | 2020-06-09 | Lorem ipsum 1.2 | Lorem ipsum 2.2\
+  3 | Carlos   | 2020-06-09 | Lorem ipsum 1   | Lorem ipsum 2\
+(3 rows)\
+\
+-\ul  \cf3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 Modificar la tabla post, agregando la columna t\'edtulo\
+\
+\cf2 \kerning1\expnd0\expndtw0 \ulnone \CocoaLigature0 ALTER TABLE posts\
+ADD titulo VARCHAR(30);\
+\
+SELECT * FROM posts;\
+ id | username | created_at |     content     |   description   | titulo \
+----+----------+------------+-----------------+-----------------+--------\
+  1 | Pamela   | 2020-06-09 | Lorem ipsum 1   | Lorem ipsum 2   | \
+  2 | Pamela   | 2020-06-09 | Lorem ipsum 1.2 | Lorem ipsum 2.2 | \
+  3 | Carlos   | 2020-06-09 | Lorem ipsum 1   | Lorem ipsum 2   | \
+(3 rows)\
+\
+\ul - \cf3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 Agregar t\'edtulo a las publicaciones ya ingresadas \
+\
+\cf2 \kerning1\expnd0\expndtw0 \ulnone \CocoaLigature0 UPDATE posts SET titulo = 'Titulo 1' WHERE id =1;\
+\
+UPDATE posts SET titulo = 'Titulo 2' WHERE id =2;\
+\
+UPDATE posts SET titulo = 'Titulo 3' WHERE id =3;\
+\
+SELECT * FROM posts;\
+ id | username | created_at |     content     |   description   |  titulo  \
+----+----------+------------+-----------------+-----------------+----------\
+  1 | Pamela   | 2020-06-09 | Lorem ipsum 1   | Lorem ipsum 2   | Titulo 1\
+  2 | Pamela   | 2020-06-09 | Lorem ipsum 1.2 | Lorem ipsum 2.2 | Titulo 2\
+  3 | Carlos   | 2020-06-09 | Lorem ipsum 1   | Lorem ipsum 2   | Titulo 3\
+(3 rows)\
+\
+\ul - \cf3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 Insertar 2 post para el usuario "Pedro" \ulnone \
+\
+\cf2 \kerning1\expnd0\expndtw0 \CocoaLigature0 INSERT INTO posts (username, created_at, content, description) VALUES\
+('Pedro', '06-09-2020', 'Lorem ipsum 1', 'Lorem ipsum 2');\
+\
+INSERT INTO posts (username, created_at, content, description) VALUES    \
+('Pedro', '06-09-2020', 'Lorem ipsum 1.2', 'Lorem ipsum 2.2');\
+\
+\
+\ul - \cf3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 Eliminar el post de Carlos \
+\
+\cf2 \kerning1\expnd0\expndtw0 \ulnone \CocoaLigature0 DELETE FROM posts WHERE username='Carlos';\
+\
+\
+\ul - \cf3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 Ingresar un nuevo post para el usuario "Carlos" \
+\
+\cf2 \kerning1\expnd0\expndtw0 \ulnone \CocoaLigature0 INSERT INTO posts (username, created_at, content, description) VALUES\
+('Carlos', '06-09-2020', 'Lorem ipsum 3', 'Lorem ipsum 4');\
+\
+SELECT * FROM posts;\
+ id | username | created_at |     content     |   description   |  titulo  \
+----+----------+------------+-----------------+-----------------+----------\
+  1 | Pamela   | 2020-06-09 | Lorem ipsum 1   | Lorem ipsum 2   | Titulo 1\
+  2 | Pamela   | 2020-06-09 | Lorem ipsum 1.2 | Lorem ipsum 2.2 | Titulo 2\
+  4 | Pedro    | 2020-06-09 | Lorem ipsum 1   | Lorem ipsum 2   | \
+  5 | Pedro    | 2020-06-09 | Lorem ipsum 1.2 | Lorem ipsum 2.2 | \
+  6 | Carlos   | 2020-06-09 | Lorem ipsum 3   | Lorem ipsum 4   | \
+(5 rows)\
+\
+UPDATE posts SET titulo = 'Titulo 3' WHERE id =4;\
+\
+UPDATE posts SET titulo = 'Titulo 4' WHERE id =5;\
+\
+UPDATE posts SET titulo = 'Titulo 5' WHERE id =6;\
+\
+SELECT * FROM posts;\
+ id | username | created_at |     content     |   description   |  titulo  \
+----+----------+------------+-----------------+-----------------+----------\
+  1 | Pamela   | 2020-06-09 | Lorem ipsum 1   | Lorem ipsum 2   | Titulo 1\
+  2 | Pamela   | 2020-06-09 | Lorem ipsum 1.2 | Lorem ipsum 2.2 | Titulo 2\
+  4 | Pedro    | 2020-06-09 | Lorem ipsum 1   | Lorem ipsum 2   | Titulo 3\
+  5 | Pedro    | 2020-06-09 | Lorem ipsum 1.2 | Lorem ipsum 2.2 | Titulo 4\
+  6 | Carlos   | 2020-06-09 | Lorem ipsum 3   | Lorem ipsum 4   | Titulo 5\
+(5 rows)\
+
+\f2\fs24 \cf3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+
+\f0\b \ul PARTE 2\
+\
+
+\f1\b0\fs22 - Crear una nueva tabla, llamada comentarios, con los atributos id, fecha y hora de creaci\'f3n, contenido, que se relacione con la tabla posts. \
+\
+\cf2 \kerning1\expnd0\expndtw0 \ulnone \CocoaLigature0 CREATE TABLE comentarios (\
+id SERIAL, post_id INT, created_at TIMESTAMP, content VARCHAR(225),\
+FOREIGN KEY (post_id) REFERENCES posts(id),\
+PRIMARY KEY (id));\
+\
+SELECT * FROM comentarios;\
+ id | post_id | created_at | content \
+----+---------+------------+---------\
+(0 rows)\
+
+\f2\fs24 \cf3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+
+\f1\fs22 \ul - Crear 2 comentarios para el post de "Pamela" y 4 para "Carlos" \
+\
+\cf2 \kerning1\expnd0\expndtw0 \ulnone \CocoaLigature0 INSERT INTO comentarios (post_id, created_at, content) VALUES\
+(1, '06-09-2020 20:21:42', 'Comentario 1 para Pamela');\
+\
+INSERT INTO comentarios (post_id, created_at, content) VALUES \
+(2, '06-09-2020 20:21:42', 'Comentario 2 para Pamela');\
+\
+\
+INSERT INTO comentarios (post_id, created_at, content) VALUES (6, '06-09-2020 20:21:42', 'Comentario 1 para Carlos');\
+\
+INSERT INTO comentarios (post_id, created_at, content) VALUES (6, '06-09-2020 20:21:42', 'Comentario 2 para Carlos');\
+\
+INSERT INTO comentarios (post_id, created_at, content) VALUES (6, '06-09-2020 20:21:42', 'Comentario 3 para Carlos');\
+\
+INSERT INTO comentarios (post_id, created_at, content) VALUES (6, '06-09-2020 20:21:42', 'Comentario 4 para Carlos');\
+\
+
+\f2\fs24 \cf3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+
+\f1\fs22 \cf2 \kerning1\expnd0\expndtw0 \CocoaLigature0 SELECT * FROM comentarios;\
+ id | post_id |     created_at      |         content          \
+----+---------+---------------------+--------------------------\
+  1 |       1 | 2020-06-09 20:21:42 | Comentario 1 para Pamela\
+  2 |       2 | 2020-06-09 20:21:42 | Comentario 2 para Pamela\
+  4 |       6 | 2020-06-09 20:21:42 | Comentario 1 para Carlos\
+  5 |       6 | 2020-06-09 20:21:42 | Comentario 2 para Carlos\
+  6 |       6 | 2020-06-09 20:21:42 | Comentario 3 para Carlos\
+  7 |       6 | 2020-06-09 20:21:42 | Comentario 4 para Carlos\
+(6 rows)\
+\
+- \cf3 \expnd0\expndtw0\kerning0
+\ul \CocoaLigature1 Crear un nuevo post para "Margarita" \
+\
+\cf2 \kerning1\expnd0\expndtw0 \ulnone \CocoaLigature0 INSERT INTO posts (username, created_at, content, description, titulo) VALUES\
+('Margarita', '06-09-2020', 'contenido de prueba', 'descripcion de prueba', 'titulo margarita');\
+\
+\
+- \cf3 \expnd0\expndtw0\kerning0
+\ul \CocoaLigature1 Ingresar 5 comentarios para el post de Margarita\cf2 \kerning1\expnd0\expndtw0 \ulnone \CocoaLigature0 \
+\
+INSERT INTO comentarios (post_id, created_at, content) VALUES\
+(7, '06-09-2020 20:29:20', 'Comentario 1 para Margarita');\
+\
+INSERT INTO comentarios (post_id, created_at, content) VALUES (7, '06-09-2020 20:29:20', 'Comentario 2 para Margarita');\
+\
+INSERT INTO comentarios (post_id, created_at, content) VALUES (7, '06-09-2020 20:29:20', 'Comentario 3 para Margarita');\
+\
+INSERT INTO comentarios (post_id, created_at, content) VALUES (7, '06-09-2020 20:29:20', 'Comentario 4 para Margarita');\
+\
+INSERT INTO comentarios (post_id, created_at, content) VALUES (7, '06-09-2020 20:29:20', 'Comentario 5 para Margarita');\
+\
+\
+SELECT * FROM comentarios;\
+ id | post_id |     created_at      |           content           \
+----+---------+---------------------+-----------------------------\
+  1 |       1 | 2020-06-09 20:21:42 | Comentario 1 para Pamela\
+  2 |       2 | 2020-06-09 20:21:42 | Comentario 2 para Pamela\
+  4 |       6 | 2020-06-09 20:21:42 | Comentario 1 para Carlos\
+  5 |       6 | 2020-06-09 20:21:42 | Comentario 2 para Carlos\
+  6 |       6 | 2020-06-09 20:21:42 | Comentario 3 para Carlos\
+  7 |       6 | 2020-06-09 20:21:42 | Comentario 4 para Carlos\
+  8 |       7 | 2020-06-09 20:29:20 | Comentario 1 para Margarita\
+  9 |       7 | 2020-06-09 20:29:20 | Comentario 2 para Margarita\
+ 10 |       7 | 2020-06-09 20:29:20 | Comentario 3 para Margarita\
+ 11 |       7 | 2020-06-09 20:29:20 | Comentario 4 para Margarita\
+ 12 |       7 | 2020-06-09 20:29:20 | Comentario 5 para Margarita\
+(11 rows)\
+\
+
+\f2\fs24 \cf3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\
+\
+}
